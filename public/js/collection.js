@@ -49,3 +49,11 @@ const initEvents = function() {
 };
 
 initEvents();
+
+
+// Carrousel
+
+
+    $(document).ready(function() {
+        $('#myCarousel').carousel();
+    });

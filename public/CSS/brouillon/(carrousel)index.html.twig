@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_row(form.race) }}
+        {{ form_row(form.isLof) }}
+        <button type="submit">Verifier</button>
+        {{ form_end(form) }}
+    </div>
+
+    <div class="d-flex gap-4 justify-content-center">
+        <h1 class="mt-4">Liste des annonces</h1>
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for annonce in liste %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <div class="container">
+                            <h2 class="my-4">{{ annonce.title }}</h2>
+                            <hr class="mx-auto w-80">
+                            {% for dog in annonce.dogs %}
+                                <div class="d-flex p-2 gap-2 justify-content-center align-items-center">
+                                    {% for image in dog.images %}
+                                        <img src="{{ asset(image.path) }}" alt="...">
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                            <div class="card-body">
+                                <p class="card-text">{{ annonce.modifiedAt|date('d/m/Y H:i') }}</p>
+                                {% for dog in annonce.dogs %}
+                                    <h3>{{ dog.name }}</h3>
+                                    {% for race in dog.races %}
+                                        <h4>{{ race.name }}</h4>
+                                    {% endfor %}
+                                    {% if dog.isAdopted == false %}
+                                        <p>Pas encore adopté</p>
+                                    {% else %}
+                                        <p>Adopté</p>
+                                    {% endif %}
+                                {% endfor %}
+                                <a href="{{ path('annonce_show', {'id': annonce.getId}) }}" class="btn btn-primary">Voir l'annonce</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+    </div>
+{% endblock %}

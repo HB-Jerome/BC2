@@ -8,6 +8,7 @@
 
 		
 			<div class="row">
+			<h2 class="card-title">Nos 5 dernières annonces</h2 >
 				{% for annonce in annonces %}
 
 					{# <hr class="mx-auto w-80">
@@ -36,7 +37,7 @@
 								</div> #}
 
 					{# Card Bootsrap Kitchen sink #}
-						<div class="card  col-12 col-lg-8 mx-auto"> {# <img src="{{ asset('/img/logo/chien-automne.webp')}}" class="card-img-top" alt="..."> #}
+						<div class="card  col-12 col-lg-8 mx-auto"> {# <img src="{{ asset('/img/logo/chien-automne.jpg')}}" class="card-img-top" alt="..."> #}
 						<h5 class="card-title text-center">{{ annonce.title }}</h5>
 						{#----------------------- Images des chiens #}
 							<div class="w-100 d-flex flex-wrap p-2 gap-2 justify-content-center align-items-center"> {% for dog in annonce.dogs %}
@@ -51,7 +52,7 @@
 							
 							<p class="card-text">{{ annonce.modifiedAt|date('d/m/Y H:i') }}</p>
 						</div>
-						<h3>Liste des chiens</h3>
+						<h3>Liste des chiens présents dans cette annonce :</h3>
 						<ul
 							class="list-group list-group-flush">
 							{# ajout d'un Boucle for #}
@@ -66,13 +67,14 @@
 											<ul class="infodog">
 												<li class="mb-4">
 													<strong class="bold">Race</strong>
-													:<br>
+													<br>
 													{% for race in dog.races %}
 														<span>{{race.name}}</span>
 													{% endfor %}
 												</li>
 												<li class="mb-4">
-													<strong class="bold">Statut d'adoption :</strong>
+													<strong class="bold">Statut d'adoption </strong>
+													<br>
 													{% if dog.isAdopted == false %}
 														<span>Pas encore adopté</span>
 													{% else %}
@@ -80,8 +82,8 @@
 													{% endif %}
 												</li>
 												<li class="mb-4">
-													<strong class="bold">Antécédents :</strong>
-													:<br>
+													<strong class="bold">Antécédents</strong>
+													<br>
 													{{dog.antecedant}}
 										
 												</li>
@@ -111,6 +113,7 @@
 
 
 			<div class="text-center my-5 gap-2">
+			<h2 class="card-title">Associations présentes sur le site</h2 >
 				{% for annonceur in annonceurs %}
 					<hr class="mx-auto w-80">
 					<h3 class="card-title">{{annonceur.name}}</h3 >

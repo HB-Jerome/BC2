@@ -114,6 +114,23 @@ footer {
     color: red;
 }
 
+.card-body {
+    background: url("../img/logo/paw-pattern.png") no-repeat center, !important;
+    background-size: cover, !important;
+    }
+
+
+/* header {
+    background: linear-gradient(to top right,
+			rgba(67, 66, 66, 0.6),
+			#484646df),
+			url("../img/logo/imgBG.jpeg") no-repeat center;
+    background-size: cover;
+    color: white;
+    padding: 20px;
+} */
+
+
 /* .infodog li {
 list-style: circle;
 } */

@@ -3,7 +3,7 @@
 {% block title %}Annonces{% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="my-3 container">
     {{ form_start(form) }}
     {{ form_row(form.race) }}
     {{ form_row(form.isLof) }}
@@ -38,7 +38,7 @@
             <p>Adopté</p>
             {% endif %}
             {% endfor %}
-            <a href="{{ path('annonce_show', {'id': annonce.getId}) }}" class="btn btn-primary">Voir l'annonce</a>
+            <a href="{{ path('annonce_show', {'id': annonce.getId}) }}" class="btn btn-light">Voir l'annonce</a>
         </div>
     </div>
 

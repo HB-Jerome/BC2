@@ -71,7 +71,7 @@
 				{% endfor %}
 			{% endfor %}
 		{% endblock messages %}
-		<nav class="navbar navbar-light justify-content-between mx-4">
+		{# <nav class="navbar navbar-light justify-content-between mx-4">
 			<a href="{{path('app_default')}}" class="navbar-brand">DOGGY DEAL</a>
 			<div class="form-inline d-flex align-items-start gap-1">
 				<a href="{{path('app_annonce')}}" class="navbar-brand">Afficher la liste complète des annonces</a>
@@ -99,7 +99,101 @@
 					<a class="btn btn-outline-success  my-sm-0" href="{{path('app_register')}}">Inscription</a>
 				{% endif %}
 			</div>
-		</nav>
+		</nav> #}
+
+
+
+
+{# ----------------------------------------------Début Navbar bootstrap #}
+
+{# <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a href="{{path('app_default')}}" class="navbar-brand">DOGGY DEAL</a>
+        {% if is_granted('ROLE_USER') %}
+            <div>{{ app.user.username }}</div>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a href="{{path('app_annonce')}}" class="nav-link">Afficher la liste complète des annonces</a>
+                {% if is_granted('ROLE_ANNONCEUR') %}
+                    <a class="nav-link" href="{{ path('app_annonceur') }}">Mes annonces</a>
+                    <a class="nav-link" href="{{ path('app_adoptant') }}">Mon Compte</a>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="nav-link" href="{{ path('admin') }}">Mon Espace Administrateur</a>
+                {% endif %}
+                {% if is_granted('ROLE_ADOPTANT') %}
+                    <a class="nav-link" href="{{ path('app_message') }}">Message</a>
+                    <a class="nav-link" href="{{ path('app_adoptant') }}">Mon Compte</a>
+                {% endif %}
+                {% if is_granted('ROLE_USER') %}
+                    <a class="btn btn-outline-success  my-sm-0" href="{{ path('app_logout') }}">Se déconnecter</a>
+                {% else %}
+                    <a class="nav-link" href="{{path('app_login')}}">Login</a>
+                    <a class="nav-link" href="{{path('app_register')}}">Inscription</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav> #}
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a href="{{path('app_default')}}" class="navbar-brand">DOGGY DEAL</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="{{path('app_annonce')}}" class="nav-link">Afficher la liste complète des annonces</a>
+                    </li>
+                {% if is_granted('ROLE_ANNONCEUR') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_annonceur') }}">Mes annonces</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_adoptant') }}">Mon Compte</a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin') }}">Mon Espace Administrateur</a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADOPTANT') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_message') }}">Message</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_adoptant') }}">Mon Compte</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <div class="d-flex align-items-center">
+                {% if is_granted('ROLE_USER') %}
+                 <div class='me-4'> Statut :  
+  <span class="badge rounded-pill text-bg-info">{{ app.user.username }}</span>
+</div>
+                    <a class="btn btn-outline-success  my-sm-0" href="{{ path('app_logout') }}">Se déconnecter</a>
+                {% else %}
+                <a class="btn btn-outline-success  my-sm-0" " href=" {{path('app_login')}} ">Login</a>
+                <a class="btn btn-outline-success  my-sm-0" " href=" {{path('app_register')}} ">Inscription</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+{# ----------------------------------------------Fin de la navbar bootstrap #}
+
+
+
+
 		{% block body %}{% endblock %}
 		<footer>
 			<div class="container d-flex align-items-center">

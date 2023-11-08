@@ -13,14 +13,14 @@
 
 <div class="container"> 
  
-    <h1 class="mf-2 my-4">Liste complète des annonces</h1>
+    <h1 class="mf-2 my-4 text-muted" >Liste complète des annonces</h1>
     {% for annonce in liste %}
     <div class="card mb-4"> <!-- Add the 'card' class to create a card-like container -->
 	   <h1 class="card-title text-center">{{ annonce.title }}</h1>
         <hr class="mx-auto w-80">
         {% for dog in annonce.dogs %}
         <div class="d-flex p-2 gap-2 justify-content-center align-items-center">
-            {% for image in dog.images %}
+              {% for image in dog.images %}
             <img src="{{ asset(image.path) }}" alt="...">
             {% endfor %}
         </div>
@@ -30,7 +30,7 @@
             {% for dog in annonce.dogs %}
             <h2>{{ dog.name }}</h2>
             {% for race in dog.races %}
-            <h1>{{ race.name }}</h1>
+            <p>{{ race.name }}</p>
             {% endfor %}
             {% if dog.isAdopted == false %}
             <p>Pas encore adopté</p>

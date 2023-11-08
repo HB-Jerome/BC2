@@ -61,7 +61,7 @@ class AppFixtures extends Fixture
             $adoptant->setPassword(
                 $this->hasher->hashPassword(
                     $adoptant,
-                    'mdp'.$i
+                    'mdp'
                 )
             );
             $manager->persist($adoptant);
@@ -96,7 +96,7 @@ class AppFixtures extends Fixture
             $annonceur->setPassword(
                 $this->hasher->hashPassword(
                     $annonceur,
-                    'mdp'.$i
+                    'mdp'
                 )
             );
             $manager->persist($annonceur);
@@ -166,8 +166,8 @@ class AppFixtures extends Fixture
             $manager->persist($race);
         }
         $dogs = [];
-        $descrip = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid enim possumus hoc agere divinius? Vitae autem degendae ratio maxime quidem illis placuit quieta. Sin dicit obscurari quaedam nec apparere, quia valde parva sint, nos quoque concedimus; Duo Reges: constructio interrete. Non dolere, inquam, istud quam vim habeat postea videro; Quid ergo attinet dicere';
-        $antec = 'Nec enim, dum metuit, iustus est, et certe, si metuere destiterit, non erit; Hoc ille tuus non vult omnibusque ex rebus voluptatem quasi mercedem exigit.';
+        $descrip = 'Chien adorable qui ne demande qu\'à être adopté';
+        $antec = 'N\'a jamais mordu, mais est diabétique (comme tous les chiens du site)';
 
         foreach ($dogsNames as $dogName) {
             $dog = new Dog();
@@ -179,7 +179,8 @@ class AppFixtures extends Fixture
                 ->setDescription($descrip)
                 ->setAntecedant($antec)
                 ->setAcceptAnimmals($isAdopted[$rnd])
-                ->setIsAdopted(false);
+                ->setIsAdopted(false)
+                ->setIsLof(false);
 
             $randnb = mt_rand(1, 3);
             for ($i = 0; $i <= $randnb; ++$i) {

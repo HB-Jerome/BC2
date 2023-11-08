@@ -230,7 +230,7 @@ class Dog
         return $this->isLof;
     }
 
-    public function setIsLof(bool $isLof): static
+    public function setIsLof(bool $isLof): self
     {
         $this->isLof = $isLof;
 

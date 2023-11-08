@@ -4,48 +4,128 @@
 {% endblock %}
 
 {% block body %}
+	<section class="container">
 
-	<div class="text-center my-5 gap-2">
-		{% for annonce in annonces %}
-			<hr class="mx-auto w-80">
-			{% for dog in annonce.dogs %}
-				<div class="d-flex p-2 gap-2 justify-content-center align-items-center">
-					{% for image in dog.images %}
-						<img src="{{ asset(image.path) }}" alt="...">
-					{% endfor %}
-				</div>
-			{% endfor %}
-			<div class="card-body">
-				<h1 class="card-title">{{annonce.title}}</h1>
-				<p class="card-text">{{annonce.modifiedAt| date('d/m/Y H:i')}}</p>
-				{% for dog in annonce.dogs %}
-					<h2>{{dog.name}}</h2>
-					{% for race in dog.races %}
-						<h1>{{race.name}}</h1>
-					{% endfor %}
-					{% if dog.isAdopted == false %}
-						<p>Pas encore adopté</p>
-					{% else %}
-						<p>Adopté</p>
-					{% endif %}
+		
+			<div class="row">
+			<h2 class="card-title my-3 text-muted">Nos 5 dernières annonces</h2 >
+				{% for annonce in annonces %}
+
+					{# <hr class="mx-auto w-80">
+								{% for dog in annonce.dogs %}
+									<div class="d-flex p-2 gap-2 justify-content-center align-items-center">
+										{% for image in dog.images %}
+											<img src="{{ asset(image.path) }}" alt="...">
+										{% endfor %}
+									</div>
+								{% endfor %}
+								<div class="card-body">
+									<h1 class="card-title">{{annonce.title}}</h1>
+									<p class="card-text">{{annonce.modifiedAt| date('d/m/Y H:i')}}</p>
+									{% for dog in annonce.dogs %}
+										<h2>{{dog.name}}</h2>
+										{% for race in dog.races %}
+											<h1>{{race.name}}</h1>
+										{% endfor %}
+										{% if dog.isAdopted == false %}
+											<p>Pas encore adopté</p>
+										{% else %}
+											<p>Adopté</p>
+										{% endif %}
+									{% endfor %}
+									<a href="{{path('annonce_show', {id: annonce.id}) }}" class="btn btn-primary">Voir l'annonce</a>
+								</div> #}
+
+					{# Card Bootsrap Kitchen sink #}
+						<div class="card  col-12 col-lg-8 mx-auto"> {# <img src="{{ asset('/img/logo/chien-automne.jpg')}}" class="card-img-top" alt="..."> #}
+						<h5 class="card-title text-center">{{ annonce.title }}</h5>
+						{#----------------------- Images des chiens #}
+							<div class="w-100 d-flex flex-wrap p-2 gap-2 justify-content-center align-items-center"> {% for dog in annonce.dogs %}
+								{% for image in dog.images %}
+									<img class="imageAnnonce" src="{{ asset(image.path) }}" alt="...">
+								{% endfor %}
+							{% endfor %}
+						</div>
+						{# -------------------- #}
+
+						<div class="card-body">
+							
+							<p class="card-text">{{ annonce.modifiedAt|date('d/m/Y H:i') }}</p>
+						</div>
+						<h3>Liste des chiens présents dans cette annonce :</h3>
+						<ul
+							class="list-group list-group-flush">
+							{# ajout d'un Boucle for #}
+							{% for dog in annonce.dogs %}
+								<li class="list-group-item">
+									<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{dog.name}}" aria-expanded="false" aria-controls="collapseExample">
+										{{dog.name}}
+									</button>
+									{# ----------------------Collapse #}
+									<div class="collapse" id="{{ dog.name }}">
+										<div class="card card-body">
+											<ul class="infodog">
+												<li class="mb-4">
+													<strong class="bold">Race</strong>
+													<br>
+													{% for race in dog.races %}
+														<span>{{race.name}}</span>
+													{% endfor %}
+												</li>
+												<li class="mb-4">
+													<strong class="bold">Statut d'adoption </strong>
+													<br>
+													{% if dog.isAdopted == false %}
+														<span>Pas encore adopté</span>
+													{% else %}
+														<span>Adopté</span>
+													{% endif %}
+												</li>
+												<li class="mb-4">
+													<strong class="bold">Antécédents</strong>
+													<br>
+													{{dog.antecedant}}
+										
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+
+							{% endfor %}
+						</ul>
+						<div class="card-body">
+							<a href="{{path('annonce_show', {id: annonce.id}) }}" class="btn btn-primary">Voir l'annonce</a>
+						</div>
+					</div>
+					{# Fin du kitchen sink #}
+
+
 				{% endfor %}
-				<a href="{{path('annonce_show', {id: annonce.id}) }}" class="btn btn-primary">Voir l'annonce</a>
+				<hr>
+				<div class="text-center">
+				<a class="btn btn-primary" href="{{path('app_annonce')}}">Voir Tout</a>
+				</div>
 			</div>
-		{% endfor %}
-		<hr>
-		<a class="btn btn-primary" href="{{path('app_annonce')}}">Voir Tout</a>
-	</div>
+
+
+	</section>
+
+
+			<div class="text-center my-5 gap-2">
+			<h2 class="card-title">Associations présentes sur le site</h2 >
+				{% for annonceur in annonceurs %}
+					<hr class="mx-auto w-80">
+					<h3 class="card-title">{{annonceur.name}}</h3 >
+					<p>Nombre d'annonces à pourvoir:
+						{{annonceur.annonces|length - annonceur.getNbAnnoncesPourvues()}}</p>
+					<p>Nombre d'annonces pourvues:
+						{{annonceur.getNbAnnoncesPourvues()}}</p>
+				{% endfor %}
+			</div>
 
 
 
-<div class="text-center my-5 gap-2">
-{% for annonceur in annonceurs %}
-			<hr class="mx-auto w-80">
-			<h1 class="card-title">{{annonceur.name}}</h1>
-			<h1 class="card-title">Nombre d'annonces à pourvoir: {{annonceur.annonces|length - annonceur.getNbAnnoncesPourvues()}}</h1>
-			<h1 class="card-title">Nombre d'annonces pourvues:  {{annonceur.getNbAnnoncesPourvues()}}</h1>
-{% endfor %}
-</div>
 
+{% endblock %}
 
-	{% endblock %}

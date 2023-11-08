@@ -1,7 +1,7 @@
-img[src*="jpg"] {
+/* img[src*="jpg"] {
     max-height: 159px;
     max-width: 159px;
-   }
+   } */
 
    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700;1,900&family=Merriweather:wght@700;900&display=swap');
 
@@ -12,7 +12,7 @@ body {
     color : #000000;
 }
 
-header {
+/* header {
     background: linear-gradient(to top right,
 			rgba(67, 66, 66, 0.6),
 			#484646df),
@@ -20,12 +20,12 @@ header {
     background-size: cover;
     color: white;
     padding: 20px;
-}
+} */
 
-header div {
+/* header div {
     margin: 150px auto;
     text-align: center;
-}
+} */
 
 h1 {
     font-family: 'Merriweather', serif;
@@ -72,4 +72,57 @@ footer {
     display: table;
   }
 
-  
+/* Card container */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    background-color: #fff;
+}
+
+/* Card container */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    background-color: #fff;
+}
+
+/* Card title */
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Card text */
+.card-text {
+    font-size: 1rem;
+    color: #777;
+}
+
+/* Adopted status */
+.card-text.adopted {
+    color: green;
+}
+
+.card-text.not-adopted {
+    color: red;
+}
+
+/* .infodog li {
+list-style: circle;
+} */
+
+.bold {
+font-weight: bold;
+}
+
+.imageAnnonce {
+    height: 100px;
+    aspect-ratio:initial; 
+}

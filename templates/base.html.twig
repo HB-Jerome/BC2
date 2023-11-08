@@ -8,40 +8,79 @@
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
+
 		{% block stylesheets %}
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 			<link rel="stylesheet" href="{{ asset('CSS/bootstrap.css') }}">
 			<link rel="stylesheet" href="{{ asset('CSS/reset.css') }}">
 			<link rel="stylesheet" href="{{ asset('CSS/style.css') }}">
 		{% endblock %}
 
-		{% block javascripts %}{% endblock %}
+		{% block javascripts %}
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+		{% endblock %}
 	</head>
 	<body>
 		<header>
-			<div>
-				<a href="{{path('app_default')}}">
-					<h1>DOGGY DEAL</h1>Viens nous adopter !</a>
+			<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="{{ asset('/img/logo/groupe-de-chiens-photo.jpg')}} " class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h1>DoggyDeal</h1>
+							<p>Viens nous adopter !</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="{{ asset('/img/logo/chien-automne.jpg')}} "  class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h2>Des centaines d'associations</h2>
+							<p>Le site DoggyDeal met en relation des particuliers à la recherche d'un site avec des associations.</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="{{ asset('/img/logo/chien-court.jpg')}} "  class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							{# <h5>Third slide label</h5> #}
+							{# <p>Some representative placeholder content for the third slide.</p> #}
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
 			</div>
 		</header>
-				{% block messages %}
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ label }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        {% endblock messages %}
-		<nav class="navbar navbar-light justify-content-between mx-4">
+		{% block messages %}
+			{% for label, messages in app.flashes %}
+				{% for message in messages %}
+					<div class="alert alert-{{ label }}">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endfor %}
+		{% endblock messages %}
+		{# <nav class="navbar navbar-light justify-content-between mx-4">
 			<a href="{{path('app_default')}}" class="navbar-brand">DOGGY DEAL</a>
 			<div class="form-inline d-flex align-items-start gap-1">
-				<a href="{{path('app_annonce')}}" class="navbar-brand">Liste des annonces</a>
+				<a href="{{path('app_annonce')}}" class="navbar-brand">Afficher la liste complète des annonces</a>
 				{% if is_granted('ROLE_USER') %}
 					<div class="mb-3">
 						{{ app.user.username }}
 						{% if is_granted('ROLE_ANNONCEUR') %}
-						<a class="btn btn-outline-success  my-sm-0" href="{{ path('app_annonceur') }}">Mes annonces</a>
-						<a class="btn btn-outline-success  my-sm-0" href="{{ path('app_adoptant') }}">Mon Compte</a>
+							<a class="btn btn-outline-success  my-sm-0" href="{{ path('app_annonceur') }}">Mes annonces</a>
+							<a class="btn btn-outline-success  my-sm-0" href="{{ path('app_adoptant') }}">Mon Compte</a>
 						{% endif %}
 
 						{% if is_granted('ROLE_ADMIN') %}
@@ -60,7 +99,101 @@
 					<a class="btn btn-outline-success  my-sm-0" href="{{path('app_register')}}">Inscription</a>
 				{% endif %}
 			</div>
-		</nav>
+		</nav> #}
+
+
+
+
+{# ----------------------------------------------Début Navbar bootstrap #}
+
+{# <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a href="{{path('app_default')}}" class="navbar-brand">DOGGY DEAL</a>
+        {% if is_granted('ROLE_USER') %}
+            <div>{{ app.user.username }}</div>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a href="{{path('app_annonce')}}" class="nav-link">Afficher la liste complète des annonces</a>
+                {% if is_granted('ROLE_ANNONCEUR') %}
+                    <a class="nav-link" href="{{ path('app_annonceur') }}">Mes annonces</a>
+                    <a class="nav-link" href="{{ path('app_adoptant') }}">Mon Compte</a>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="nav-link" href="{{ path('admin') }}">Mon Espace Administrateur</a>
+                {% endif %}
+                {% if is_granted('ROLE_ADOPTANT') %}
+                    <a class="nav-link" href="{{ path('app_message') }}">Message</a>
+                    <a class="nav-link" href="{{ path('app_adoptant') }}">Mon Compte</a>
+                {% endif %}
+                {% if is_granted('ROLE_USER') %}
+                    <a class="btn btn-outline-success  my-sm-0" href="{{ path('app_logout') }}">Se déconnecter</a>
+                {% else %}
+                    <a class="nav-link" href="{{path('app_login')}}">Login</a>
+                    <a class="nav-link" href="{{path('app_register')}}">Inscription</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav> #}
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a href="{{path('app_default')}}" class="navbar-brand">DOGGY DEAL</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="{{path('app_annonce')}}" class="nav-link">Afficher la liste complète des annonces</a>
+                    </li>
+                {% if is_granted('ROLE_ANNONCEUR') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_annonceur') }}">Mes annonces</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_adoptant') }}">Mon Compte</a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin') }}">Mon Espace Administrateur</a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADOPTANT') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_message') }}">Message</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_adoptant') }}">Mon Compte</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <div class="d-flex align-items-center">
+                {% if is_granted('ROLE_USER') %}
+                 <div class='me-4'> Statut :  
+  <span class="badge rounded-pill text-bg-info">{{ app.user.username }}</span>
+</div>
+                    <a class="btn btn-outline-success  my-sm-0" href="{{ path('app_logout') }}">Se déconnecter</a>
+                {% else %}
+                <a class="btn btn-outline-success  my-sm-0" " href=" {{path('app_login')}} ">Login</a>
+                <a class="btn btn-outline-success  my-sm-0" " href=" {{path('app_register')}} ">Inscription</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+{# ----------------------------------------------Fin de la navbar bootstrap #}
+
+
+
+
 		{% block body %}{% endblock %}
 		<footer>
 			<div class="container d-flex align-items-center">
@@ -70,7 +203,10 @@
 				<p class="w-50 text-center">DOGGY DEAL © 2023</p>
 			</div>
 		</footer>
-		<script src="{{ asset('js/bootstrap.js') }}" defer></script>
+
 		<script src="{{ asset('js/collection.js') }}" defer></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>
+

@@ -58,7 +58,7 @@
 							{# ajout d'un Boucle for #}
 							{% for dog in annonce.dogs %}
 								<li class="list-group-item">
-									<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{dog.name}}" aria-expanded="false" aria-controls="collapseExample">
+									<button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#{{dog.name}}" aria-expanded="false" aria-controls="collapseExample">
 										{{dog.name}}
 									</button>
 									{# ----------------------Collapse #}
@@ -95,7 +95,7 @@
 							{% endfor %}
 						</ul>
 						<div class="card-body">
-							<a href="{{path('annonce_show', {id: annonce.id}) }}" class="btn btn-primary">Voir l'annonce</a>
+							<a href="{{path('annonce_show', {id: annonce.id}) }}" class="btn btn-light">Voir l'annonce</a>
 						</div>
 					</div>
 					{# Fin du kitchen sink #}
@@ -104,7 +104,7 @@
 				{% endfor %}
 				<hr>
 				<div class="text-center">
-				<a class="btn btn-primary" href="{{path('app_annonce')}}">Voir Tout</a>
+				<a class="btn btn-secondary" href="{{path('app_annonce')}}">Voir Tout</a>
 				</div>
 			</div>
 
